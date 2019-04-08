@@ -27,10 +27,22 @@ class Page:
       return self.browser.find_element_by_xpath(selector)
 
     def insert_data_in(self, selector, text):
-        self.find_id(selector).send_keys(text)
+      self.find_id(selector).send_keys(text)
 
     def click(self, selector):
-        self.find_id(selector).click()
+      self.find_id(selector).click()
+    
+    def select_gender(self):
+      attempt = 1
+      while(attempt < 4):
+        try:
+          self.click('u_0_9')
+          break
+        except:
+          print('Attempt select gender: ' + attempt + ' failed. Trying again...')
+          attempt += 1
+      if (attempt > 3):
+        raise 'Failed to select gender.'
 
     def generate_name(self, length):
         VOWELS = "aeiou"
